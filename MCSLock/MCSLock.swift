@@ -23,6 +23,7 @@ import Foundation
 // field, this type of lock is suitable for
 // cache-less NUMA architectures.
 
+//NSLocking is a protocol(interface) wtih two methods
 class MCSLock: NSLocking {
     
     // tail: points to the tail, last item on the queue
@@ -75,6 +76,4 @@ class MCSLock: NSLocking {
         threadNode.next?.isLocked = false      // 2a
         threadNode.next = nil                  //2a
     }
-    
-    
 }

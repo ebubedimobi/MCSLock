@@ -37,7 +37,6 @@ class Main {
         for counter in 0..<SD {
             if counter % SD/4 == 0 { Thread.sleep(forTimeInterval: 1.0) }
             let value = number + number
-            //            let value = number + number * sharedData[counter]
             sharedData.append(value)
         }
     }
@@ -62,9 +61,7 @@ class Main {
     // executed atomically which can be verified.
     func createThread(threadNumber: Int, shouldUseLock: Bool) -> Thread {
         let threadNumber = threadNumber
-        print("entered", threadNumber)
         let thread = Thread {
-            print("entered again", threadNumber)
             if shouldUseLock {
                 self.lock.lock()
             }
@@ -74,7 +71,6 @@ class Main {
                 self.lock.unlock()
             }
             print("Thread N\(threadNumber) done")
-//            print(self.sharedData)
         }
         thread.start()
         return thread

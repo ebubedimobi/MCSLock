@@ -7,6 +7,11 @@
 
 import Foundation
 
+// This whole file is to mimic ThreadLocal from java
+//as swift doesn't support it from the box
+//lets you define a single variable that each thread
+//has its own separate copy of.
+
 private final class _Key<T> {
 
     var raw: pthread_key_t
