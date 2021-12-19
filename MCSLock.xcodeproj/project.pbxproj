@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		B2769357276FB6E1000027EA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2769356276FB6E1000027EA /* main.swift */; };
+		B2769361276FB6FA000027EA /* QNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B276935D276FB6F9000027EA /* QNode.swift */; };
+		B2769362276FB6FA000027EA /* MCSLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B276935E276FB6F9000027EA /* MCSLock.swift */; };
+		B2769363276FB6FA000027EA /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B276935F276FB6FA000027EA /* Atomic.swift */; };
+		B2769364276FB6FA000027EA /* ThreadLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2769360276FB6FA000027EA /* ThreadLocal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +29,10 @@
 /* Begin PBXFileReference section */
 		B2769353276FB6E1000027EA /* MCSLock */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MCSLock; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2769356276FB6E1000027EA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		B276935D276FB6F9000027EA /* QNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNode.swift; sourceTree = "<group>"; };
+		B276935E276FB6F9000027EA /* MCSLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCSLock.swift; sourceTree = "<group>"; };
+		B276935F276FB6FA000027EA /* Atomic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
+		B2769360276FB6FA000027EA /* ThreadLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadLocal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +66,10 @@
 			isa = PBXGroup;
 			children = (
 				B2769356276FB6E1000027EA /* main.swift */,
+				B276935F276FB6FA000027EA /* Atomic.swift */,
+				B276935E276FB6F9000027EA /* MCSLock.swift */,
+				B276935D276FB6F9000027EA /* QNode.swift */,
+				B2769360276FB6FA000027EA /* ThreadLocal.swift */,
 			);
 			path = MCSLock;
 			sourceTree = "<group>";
@@ -120,7 +132,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2769363276FB6FA000027EA /* Atomic.swift in Sources */,
 				B2769357276FB6E1000027EA /* main.swift in Sources */,
+				B2769364276FB6FA000027EA /* ThreadLocal.swift in Sources */,
+				B2769361276FB6FA000027EA /* QNode.swift in Sources */,
+				B2769362276FB6FA000027EA /* MCSLock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
