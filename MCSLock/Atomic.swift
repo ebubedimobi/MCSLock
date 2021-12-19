@@ -52,4 +52,3 @@ struct Atomic<Value: Equatable> {
         return isSame
     }
 }
-
