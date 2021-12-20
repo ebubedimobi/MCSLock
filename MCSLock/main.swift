@@ -10,8 +10,9 @@ import Foundation
 let benchMarker: BenchMarkable & Loggable = BenchMark()
 
 let SD = 100 // SD: shared data srray size
-let CS = 100 // CS: critical section executed per thread
-let TH = 10  // TH: number of threads
+var CS = 100 // CS: critical section executed per thread
+var TH = 10  // TH: number of threads
+var useMCSLock = true // test with our custom lock or with native mutex
 
 class Main {
     let lock: NSLocking
@@ -74,11 +75,7 @@ class Main {
                 print("locked", threadNumber)
                 self.criticalSection()
                 print("Thread N\(threadNumber) done")
-                benchMarker.increaseRelapsedTime()
-                benchMarker.logTime(currentCount: self.sharedData.endIndex)
-                if self.sharedData.endIndex == CS * SD * TH {
-                    benchMarker.createCSV(name: "MCSLock-\(TH)_Thread")
-                }
+                self.logData()
                 if shouldUseLock {
                     self.lock.unlock()
                 }
@@ -86,6 +83,15 @@ class Main {
         }
         thread.start()
         return thread
+    }
+    
+    func logData() {
+        benchMarker.increaseRelapsedTime()
+        benchMarker.logTime(currentCount: self.sharedData.endIndex)
+        if self.sharedData.endIndex == CS * SD * TH {
+            let lockName = useMCSLock ? "MCSLock-" : "NSLock-"
+            benchMarker.createCSV(name: "\(lockName)\(TH)_Thread")
+        }
     }
     
     // Tests to see if threads execute critical
@@ -102,13 +108,35 @@ class Main {
     }
 }
 
+print("Enter number of threads, CS iteration and useMCSLock in form for example 10,10,true")
+//get parameters from comand line
+if let parameters = readLine() {
+    let decodedParameters = parameters.components(separatedBy: ",")
+    if decodedParameters.count != 3 { startup() }
+    if let threadNumber = Int(decodedParameters[0]) {
+        TH = threadNumber
+    }
+    if let criticalSection = Int(decodedParameters[1]) {
+        CS = criticalSection
+    }
+    if let useCustomLock = Bool(decodedParameters[2]) {
+        useMCSLock = useCustomLock
+    }
+    startup()  // startup with custom parameters
+} else {
+    startup() // startup with default parameters
+}
+
 // main function to start
 func startup() {
     var sharedData: [Double] = []
     sharedData.reserveCapacity(SD)
-    let main = Main(lock: MCSLock(), sharedData: sharedData)
+    let main = Main(
+        lock: useMCSLock ? MCSLock() : NSLock(),
+        sharedData: sharedData
+    )
     main.testThreads(usingLock: true)
+    
 }
 
-startup()
 RunLoop.main.run()
