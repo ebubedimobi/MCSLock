@@ -9,7 +9,6 @@ import Foundation
 
 protocol BenchMarkable {
     func startTimer()
-//    func stopTimer()
     func increaseRelapsedTime()
 }
 
@@ -21,7 +20,6 @@ protocol Loggable {
 
 class BenchMark {
     private var startTime: CFAbsoluteTime
-//    private var relapsedTime: CFAbsoluteTime = .zero
     private var database:[Dictionary<String, AnyObject>] = Array()
     
     var elapsedTime: Double = .zero
