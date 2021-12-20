@@ -7,9 +7,11 @@
 
 import Foundation
 
+let benchMarker: BenchMarkable & Loggable = BenchMark()
+
 let SD = 100 // SD: shared data srray size
 let CS = 100 // CS: critical section executed per thread
-let TH = 5  // TH: number of threads
+let TH = 10  // TH: number of threads
 
 class Main {
     let lock: NSLocking
@@ -35,7 +37,7 @@ class Main {
     func criticalSection() {
         let number = Double(Int.random(in: 0...1000))
         for counter in 0..<SD {
-            if counter % SD/4 == 0 { Thread.sleep(forTimeInterval: 1.0) }
+            if counter % SD/4 == 0 { Thread.sleep(forTimeInterval: 0.0) }
             let value = number + number
             sharedData.append(value)
         }
@@ -62,15 +64,25 @@ class Main {
     func createThread(threadNumber: Int, shouldUseLock: Bool) -> Thread {
         let threadNumber = threadNumber
         let thread = Thread {
-            if shouldUseLock {
-                self.lock.lock()
+            for _ in 0..<CS {
+                if shouldUseLock {
+                    self.lock.lock()
+                }
+                if self.sharedData.isEmpty {
+                    benchMarker.startTimer()
+                }
+                print("locked", threadNumber)
+                self.criticalSection()
+                print("Thread N\(threadNumber) done")
+                benchMarker.increaseRelapsedTime()
+                benchMarker.logTime(currentCount: self.sharedData.endIndex)
+                if self.sharedData.endIndex == CS * SD * TH {
+                    benchMarker.createCSV(name: "MCSLock-\(TH)_Thread")
+                }
+                if shouldUseLock {
+                    self.lock.unlock()
+                }
             }
-            print("locked", threadNumber)
-            self.criticalSection()
-            if shouldUseLock {
-                self.lock.unlock()
-            }
-            print("Thread N\(threadNumber) done")
         }
         thread.start()
         return thread
@@ -90,7 +102,6 @@ class Main {
     }
 }
 
-
 // main function to start
 func startup() {
     var sharedData: [Double] = []
@@ -100,5 +111,4 @@ func startup() {
 }
 
 startup()
-
 RunLoop.main.run()

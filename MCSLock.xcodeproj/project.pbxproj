@@ -12,6 +12,7 @@
 		B2769362276FB6FA000027EA /* MCSLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B276935E276FB6F9000027EA /* MCSLock.swift */; };
 		B2769363276FB6FA000027EA /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B276935F276FB6FA000027EA /* Atomic.swift */; };
 		B2769364276FB6FA000027EA /* ThreadLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2769360276FB6FA000027EA /* ThreadLocal.swift */; };
+		B276938A276FE9BA000027EA /* BenchMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2769389276FE9BA000027EA /* BenchMark.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +34,7 @@
 		B276935E276FB6F9000027EA /* MCSLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCSLock.swift; sourceTree = "<group>"; };
 		B276935F276FB6FA000027EA /* Atomic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
 		B2769360276FB6FA000027EA /* ThreadLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadLocal.swift; sourceTree = "<group>"; };
+		B2769389276FE9BA000027EA /* BenchMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenchMark.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				B276935E276FB6F9000027EA /* MCSLock.swift */,
 				B276935D276FB6F9000027EA /* QNode.swift */,
 				B2769360276FB6FA000027EA /* ThreadLocal.swift */,
+				B2769389276FE9BA000027EA /* BenchMark.swift */,
 			);
 			path = MCSLock;
 			sourceTree = "<group>";
@@ -133,6 +136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2769363276FB6FA000027EA /* Atomic.swift in Sources */,
+				B276938A276FE9BA000027EA /* BenchMark.swift in Sources */,
 				B2769357276FB6E1000027EA /* main.swift in Sources */,
 				B2769364276FB6FA000027EA /* ThreadLocal.swift in Sources */,
 				B2769361276FB6FA000027EA /* QNode.swift in Sources */,
